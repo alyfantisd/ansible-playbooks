@@ -5,23 +5,10 @@
 - name: Create Azure VM
   hosts: localhost
   connection: local
-  vars_prompt:
-    - name: resource_group_name
-      prompt: Please provide the resource_group_name
-      default: alyfantisrg
-      private: no
-    - name: vm_name
-      prompt: Please provide the vm_name
-      default: alyfantisvm
-      private: no
-    - name: location
-      prompt: Please provide the location
-      default: westeurope
-      private: no
   vars:
-    resource_group: "{{ resource_group_name }}"
-    vm_name: "{{ vm_name }}"
-    location: "{{ location }}"
+    resource_group: alyfantisrg
+    vm_name: alyfantisvm
+    location: westeurope
   tasks:
   - name: Create a resource group
     azure_rm_resourcegroup:

@@ -46,6 +46,7 @@
       resource_group: "{{ resource_group }}"
       name: "{{ vm_name }}"
       virtual_network: "{{ vm_name }}"
+      location: "{{ location }}"
       subnet: "{{ vm_name }}"
       public_ip_name: "{{ vm_name }}"
       security_group: "{{ vm_name }}"

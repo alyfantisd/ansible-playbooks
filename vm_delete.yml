@@ -10,7 +10,7 @@
     vm_name: appvm1
     location: westeurope
   tasks:
-  - name: Create a resource group
+  - name: Delete a resource group
     azure_rm_resourcegroup:
       name: "{{ resource_group }}"
       location: "{{ location }}"

@@ -6,8 +6,8 @@
   hosts: localhost
   connection: local
   vars:
-    resource_group: alyfantisr1
-    vm_name: alyfantisvm1
+    resource_group: aaprg
+    vm_name: appvm1
     location: westeurope
   tasks:
   - name: Create a resource group

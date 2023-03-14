@@ -14,4 +14,5 @@
     azure_rm_resourcegroup:
       name: "{{ resource_group }}"
       location: "{{ location }}"
+      force_delete_nonempty: yes
       state: absent

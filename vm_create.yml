@@ -48,7 +48,10 @@
       virtual_network: "{{ vm_name }}"
       location: "{{ location }}"
       subnet: "{{ vm_name }}"
-      public_ip_name: "{{ vm_name }}"
+      ip_configurations:
+      - name: "{{ vm_name }}"
+        public_ip_address_name: "{{ vm_name }}"
+        primary: True
       security_group: "{{ vm_name }}"
   - name: Create VM
     azure_rm_virtualmachine:

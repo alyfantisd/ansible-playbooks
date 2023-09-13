@@ -6,8 +6,8 @@
   hosts: localhost
   connection: local
   vars:
-    resource_group: aaprg
-    vm_name: appvm1
+    resource_group: aaprg1
+    vm_name: appvm2
     location: westeurope
   tasks:
   - name: Create a resource group

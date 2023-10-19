@@ -25,11 +25,11 @@
 - hosts: localhost
   connection: local
   vars:
-    LOCATION: centralus
+    LOCATION: westeu
     RESOURCEGROUP: aro
-    CLUSTER: aro-cluster
-    DOMAIN: openshifthelp.com
-    MASTER_SIZE : Standard_D8s_v3
+    CLUSTER: alpha-cluster
+    DOMAIN: kubesupport.com
+    MASTER_SIZE : Standard_D4s_v3
     WORKER_SIZE : Standard_D4s_v3
     WORKER_COUNT: 3
     DISK_SIZE: 128

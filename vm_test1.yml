@@ -13,4 +13,4 @@
     azure_rm_resourcegroup:
       name: "{{ resource_group }}"
       location: "{{ location }}"
-      state: present
+      state: absent

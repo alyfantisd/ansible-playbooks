@@ -108,7 +108,7 @@
         visibility: "{{ privacy_api }}"
       cluster_profile:
 #        cluster_resource_group_id: "/subscriptions/{{ AZURE_SUBSCRIPTION_ID }}/resourceGroups/{{ resource_group }}"
-        pull_secret: "{{ lookup('file', '~/Aro-playbooks/pull-secret.txt') }}"
+        pull_secret: {{ lookup('file', './pull-secret.txt') }}
         version: "{{ version }}"
         domain: "{{ customdns }}"
       ingress_profiles:

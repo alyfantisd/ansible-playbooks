@@ -110,9 +110,6 @@
       network_profile:
         pod_cidr: "{{ network_pod_cidr }}"
         service_cidr: "{{ network_service_cidr }}"
-      service_principal_profile:
-        client_id: "{{ sp_client_id }}"
-        client_secret: "{{ sp_secret }}"
       worker_profiles:
         - name: "worker"
           vm_size : "{{ worker_vm_size }}"

@@ -137,12 +137,5 @@
 
   - debug:
       msg: "You can also view the cluster build status with: az aro list"
-  -   tasks:
-      - name: Delete openshift cluster
-        azure_rm_openshiftmanagedcluster:
-          resource_group: "{{ resource_group }}"
-          name: "{{ cluster_name  }}"
-          location: "{{ azure_dc }}"
-          state: absent
 
 # - end

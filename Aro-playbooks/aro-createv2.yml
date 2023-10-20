@@ -26,9 +26,9 @@
   connection: local
   vars:
     LOCATION: westeurope
-    RESOURCEGROUP: aroprod1
-    CLUSTER: alpha-cluster
-    DOMAIN: kubesupport.com
+    RESOURCEGROUP: arolabprd
+    CLUSTER: arolabprd
+    DOMAIN: arolabprd.lab.kubesupport.com
     MASTER_SIZE : Standard_D4s_v3
     WORKER_SIZE : Standard_D4s_v3
     WORKER_COUNT: 3

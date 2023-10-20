@@ -107,7 +107,7 @@
       api_server_profile:
         visibility: "{{ privacy_api }}"
       cluster_profile:
-        pull_secret: "{{ cluster_pull_secret }}"
+#        pull_secret: "{{ cluster_pull_secret }}"
         domain: "{{ customdns }}"
       ingress_profiles:
         - name: "default"

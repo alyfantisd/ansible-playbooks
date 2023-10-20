@@ -1,9 +1,9 @@
-client_id: "8f5f15d4-0812-40e5-ae4e-c9accd0770fa"
-client_secret: "o8S6-lN5SJX.UvJ_ENtjv6W_nex8lJsZUf"
+client_id: "96430035-c0c3-4deb-862b-4ffc309e7a04"
+client_secret: "6a9c7b1e-e91d-48ad-9ec4-f16395d56b3d"
 
-cluster_name: mycluster
-resource_group: mycluster-eastus
-cluster_resource_group: /subscriptions/ce6c1bf1-74b9-47e9-a1a3-c26922dd34db/resourceGroups/mycluster-eastus-cluster
-vent_id: /subscriptions/ce6c1bf1-74b9-47e9-a1a3-c26922dd34db/resourceGroups/mycluster-eastus/Microsoft.Network/virtualNetworks/mycluster-vnet
-worker_subnet_id: /subscriptions/ce6c1bf1-74b9-47e9-a1a3-c26922dd34db/resourceGroups/mycluster-eastus/providers/Microsoft.Network/virtualNetworks/mycluster-vnet/subnets/mycluster-worker
-master_subnet_id: /subscriptions/ce6c1bf1-74b9-47e9-a1a3-c26922dd34db/resourceGroups/mycluster-eastus/providers/Microsoft.Network/virtualNetworks/mycluster-vnet/subnets/mycluster-master
+#cluster_name: mycluster
+#resource_group: mycluster-eastus
+#cluster_resource_group: /subscriptions/ce6c1bf1-74b9-47e9-a1a3-c26922dd34db/resourceGroups/mycluster-eastus-cluster
+#vent_id: /subscriptions/ce6c1bf1-74b9-47e9-a1a3-c26922dd34db/resourceGroups/mycluster-eastus/Microsoft.Network/virtualNetworks/mycluster-vnet
+#worker_subnet_id: /subscriptions/ce6c1bf1-74b9-47e9-a1a3-c26922dd34db/resourceGroups/mycluster-eastus/providers/Microsoft.Network/virtualNetworks/mycluster-vnet/subnets/mycluster-worker
+#master_subnet_id: /subscriptions/ce6c1bf1-74b9-47e9-a1a3-c26922dd34db/resourceGroups/mycluster-eastus/providers/Microsoft.Network/virtualNetworks/mycluster-vnet/subnets/mycluster-master

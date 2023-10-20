@@ -43,6 +43,7 @@
 
 
       sp_client_id: "96430035-c0c3-4deb-862b-4ffc309e7a04"
+      client_id: "96430035-c0c3-4deb-862b-4ffc309e7a04"
       sp_secret: "Nku8Q~k29VD5QnWMlFbNK6qDfxJUMRzBbjTdKcPB"
       aro_master_subnet: "AROMasterSubnet"
       aro_master_subnet_cidr: "100.100.10.0/24"
@@ -97,9 +98,12 @@
 
   - name: Create Azure Red Hat OpenShift 4 Cluster
     azure_rm_openshiftmanagedcluster:
+      client_id: "{{ client_id }}"
       resource_group: "{{ resource_group }}"
       name: "{{ cluster_name }}"
       location: "{{ azure_dc }}"
+      cluster_profile:
+        cluster_resource_group_id: "/subscriptions/{{ lookup('env', 'AZURE_SUBSCRIPTION_ID') }}/resourceGroups/{{ resource_group }}"
       api_server_profile:
         visibility: "{{ privacy_api }}"
       cluster_profile:

@@ -31,10 +31,26 @@
     DOMAIN: arolabprd.lab.kubesupport.com
     MASTER_SIZE : Standard_D4s_v3
     WORKER_SIZE : Standard_D4s_v3
-    WORKER_COUNT: 3
+    WORKER_COUNT: 2
     DISK_SIZE: 128
 
   tasks:
+  - name: "Register the Microsoft.RedHatOpenShift resource provider"
+    command:
+      cmd: az provider register -n Microsoft.RedHatOpenShift --wait
+
+  - name: "Register the Microsoft.Compute resource provider"
+    command:
+      cmd: az provider register -n Microsoft.Compute --wait
+
+  - name: "Register the Microsoft.Storage resource provider"
+    command:
+      cmd: az provider register -n Microsoft.Storage --wait
+
+  - name: "Register the Microsoft.Authorization resource provider"
+    command:
+      cmd: az provider register -n Microsoft.Authorization --wait
+
   - name: "Create resource group"
     command:
       cmd: az group create --name {{ RESOURCEGROUP }} --location {{ LOCATION }}

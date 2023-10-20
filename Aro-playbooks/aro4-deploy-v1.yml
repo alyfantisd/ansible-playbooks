@@ -34,6 +34,9 @@
   hosts: localhost
   connection: local
 
+  collections:
+    - azure.azcollection
+
   vars:
 
 ########################################################## You may change any of these variables.

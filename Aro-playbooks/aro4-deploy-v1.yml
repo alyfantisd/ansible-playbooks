@@ -54,6 +54,7 @@
       azure_dc: "westeurope"
       cluster_name: "aro4-lab-prd"
       cluster_pull_secret: "{{ lookup('file', './pull-secret.txt') }}"
+      customdns: "arolabprd.lab.kubesupport.com"
       network_pod_cidr: "10.128.0.0/14"
       network_service_cidr: "172.30.0.0/16"
       privacy_api: "Public"

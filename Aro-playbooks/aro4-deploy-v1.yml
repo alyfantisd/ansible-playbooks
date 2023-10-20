@@ -53,7 +53,7 @@
       aro_worker_subnet_cidr: "100.100.20.0/24"
       azure_dc: "westeurope"
       cluster_name: "aro4labprd"
-      cluster_pull_secret: "{{ lookup('file', './pull-secret.txt') }}"
+      cluster_pull_secret: "{{ lookup('file', 'pull-secret.txt') }}"
       customdns: "arolabprd.lab.kubesupport.com"
       master_vm_size: "Standard_D8s_v3"
       network_pod_cidr: "10.128.0.0/14"

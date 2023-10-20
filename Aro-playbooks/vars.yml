@@ -1,5 +1,5 @@
-client_id: "96430035-c0c3-4deb-862b-4ffc309e7a04"
-client_secret: "6a9c7b1e-e91d-48ad-9ec4-f16395d56b3d"
+sp_client_id: "96430035-c0c3-4deb-862b-4ffc309e7a04"
+sp_secret: "6a9c7b1e-e91d-48ad-9ec4-f16395d56b3d"
 
 #cluster_name: mycluster
 #resource_group: mycluster-eastus

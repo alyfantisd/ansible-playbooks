@@ -1,0 +1,131 @@
+# Ansible Deployment Playbook
+# Azure Red Hat OpenShift 4.x
+#
+# Written by: Stuart Kirk <stuart.kirk@microsoft.com>
+# With contributions by: Haiyuan Zhang <haiyuan.zhang@microsoft.com>, Fred Sun <v-xisu@microsoft.com> & Zim Kalinowski <zikalino@microsoft.com>
+#
+# Notes:
+# * Ansible's service principal must be an owner on the subscription in question - Contributor is not high enough access
+# * A service principal with Contributor permission on the active subscription must be used below which can be obtained from the Azure Linux CLI
+# * Pull secret must be read from a file due to the hidden characters that are placed inside a variable, including a carriage return, which will cause the deploy to fail
+# * You must populate the contents of aro4-secrets.yml
+#
+# To be fixed:
+#
+# ISSUE FILED https://github.com/ansible-collections/azure/issues/266
+# ARO-RP role assignment cant already exist on VNET otherwise azure_rm_roleassignment module will fail - idempotency failure
+#
+# ISSUE FILED https://github.com/ansible-collections/azure/issues/267
+# Worker node count must be an integer; Playbook will error if you use '' or "" to indicate a string. Thus you can also not set this in a variable and it must be hard-coded in the task
+#
+# ISSUE FILED https://github.com/ansible-collections/azure/issues/270
+# Ingress profile must be named "default" - any other name will not work - Is it even necessary to have this declared in the playbook?
+# Why are ingress profiles defined as a list, however api profiles are not in the module?
+#
+# ISSUE FILED https://github.com/ansible-collections/azure/issues/268
+# API & Ingress privacy must be "Public" or "Private" - case sensitive -- API privacy will revert to "Public" even if the variable is set to "Private" - needs to be fixed
+#
+# ISSUE FILED https://github.com/ansible-collections/azure/issues/269
+# Custom domain value does not work when set and cannot be null variable
+#
+# ------------------------------------------------------------------------------------------------------
+
+- name: Deploy Azure Red Hat OpenShift 4.x
+  hosts: localhost
+  connection: local
+
+  vars:
+
+########################################################## You may change any of these variables.
+
+      aro_master_subnet: "AROMasterSubnet"
+      aro_master_subnet_cidr: "100.100.10.0/24"
+      aro_vnet: "AROVNet"
+      aro_vnet_cidr: "100.100.0.0/16"
+      aro_worker_subnet: "AROWorkerSubnet"
+      aro_worker_subnet_cidr: "100.100.20.0/24"
+      azure_dc: "westeurope"
+      cluster_name: "aro4-lab-prd"
+      cluster_pull_secret: "{{ lookup('file', '@pull-secret.txt') }}"
+      customdns: "arolabprd.lab.kubesupport.com"
+      master_vm_size: "Standard_D8s_v3"
+      network_pod_cidr: "10.128.0.0/14"
+      network_service_cidr: "172.30.0.0/16"
+      privacy_api: "Public"
+      privacy_ingress: "Public"
+      resource_group: "aro-lab-prd"
+      worker_node_count: "4"
+      worker_vm_size: "Standard_D4s_v3"
+
+  tasks:
+
+  - name: Creating ARO Resource Group
+    azure.azcollection.azure_rm_resourcegroup:
+      name: "{{ resource_group }}"
+      location: "{{ azure_dc }}"
+
+  - name: Creating ARO Virtual Network
+    azure.azcollection.azure_rm_virtualnetwork:
+      resource_group: "{{ resource_group }}"
+      name: "{{ aro_vnet }}"
+      address_prefixes: "{{ aro_vnet_cidr }}"
+
+  - name: Creating ARO 'Master' Subnet
+    azure.azcollection.azure_rm_subnet:
+      resource_group: "{{ resource_group }}"
+      name: "{{ aro_master_subnet }}"
+      address_prefix: "{{ aro_master_subnet_cidr }}"
+      virtual_network: "{{ aro_vnet }}"
+      private_link_service_network_policies: Disabled
+      service_endpoints:
+        - service: Microsoft.ContainerRegistry
+
+  - name: Creating ARO 'Worker' Subnet
+    azure.azcollection.azure_rm_subnet:
+      resource_group: "{{ resource_group }}"
+      name: "{{ aro_worker_subnet }}"
+      address_prefix: "{{ aro_worker_subnet_cidr }}"
+      virtual_network: "{{ aro_vnet }}"
+      service_endpoints:
+        - service: Microsoft.ContainerRegistry
+
+  - name: Create Azure Red Hat OpenShift 4 Cluster
+    azure_rm_openshiftmanagedcluster:
+      resource_group: "{{ resource_group }}"
+      name: "{{ cluster_name }}"
+      location: "{{ azure_dc }}"
+      api_server_profile:
+        visibility: "{{ privacy_api }}"
+      cluster_profile:
+        pull_secret: "{{ cluster_pull_secret }}"
+        domain: "{{ customdns }}"
+      ingress_profiles:
+        - name: "default"
+          visibility: "{{ privacy_ingress }}"
+      master_profile:
+        vm_size : "{{ master_vm_size }}"
+      network_profile:
+        pod_cidr: "{{ network_pod_cidr }}"
+        service_cidr: "{{ network_service_cidr }}"
+      service_principal_profile:
+        client_id: "{{ sp_client_id }}"
+        client_secret: "{{ sp_secret }}"
+      worker_profiles:
+        - name: "worker"
+          vm_size : "{{ worker_vm_size }}"
+#          count: "{{ worker_node_count }}"
+          count: 3
+
+  - debug:
+      msg: "Azure Red Hat OpenShift takes roughly 30-40 minutes to provision."
+
+  - debug:
+      msg: "Cluster IP credentials can be obainted with: az aro show -n {{ cluster_name }} -g {{ resource_group }} -o jsonc --query '[apiserverProfile , consoleProfile , ingressProfiles]'"
+
+  - debug:
+      msg: "Kubeadmin credentials can be obtained with: az aro list-credentials -n {{ cluster_name }} -g {{ resource_group }} -o table"
+
+  - debug:
+      msg: "You can also view the cluster build status with: az aro list"
+
+# - end

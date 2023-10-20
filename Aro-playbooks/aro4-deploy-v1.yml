@@ -98,10 +98,12 @@
 
   - name: Create Azure Red Hat OpenShift 4 Cluster
     azure_rm_openshiftmanagedcluster:
-      client_id: "{{ client_id }}"
       resource_group: "{{ resource_group }}"
       name: "{{ cluster_name }}"
       location: "{{ azure_dc }}"
+      service_principal_profile:
+        client_id: "96430035-c0c3-4deb-862b-4ffc309e7a04"
+        client_secret: "Nku8Q~k29VD5QnWMlFbNK6qDfxJUMRzBbjTdKcPB"
       cluster_profile:
         cluster_resource_group_id: "/subscriptions/{{ lookup('env', 'AZURE_SUBSCRIPTION_ID') }}/resourceGroups/{{ resource_group }}"
       api_server_profile:
@@ -112,9 +114,6 @@
       ingress_profiles:
         - name: "default"
           visibility: "{{ privacy_ingress }}"
-      service_principal_profile:
-        client_id: "{{ sp_client_id }}"
-        client_secret: "{{ sp_secret }}"
       master_profile:
         vm_size : "{{ master_vm_size }}"
         subnet_id: "/subscriptions/{{ lookup('env', 'AZURE_SUBSCRIPTION_ID') }}/resourceGroups/{{resource_group}}/providers/Microsoft.Network/virtualNetworks/{{ aro_vnet }}/subnets/{{ aro_master_subnet }}"

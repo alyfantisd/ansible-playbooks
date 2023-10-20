@@ -94,9 +94,10 @@
       virtual_network: "{{ aro_vnet }}"
       service_endpoints:
         - service: Microsoft.ContainerRegistry
-        
+
   - ansible.builtin.debug:
-    msg: "the value of foo.txt is {{ lookup('ansible.builtin.file', '~/@pull-secret.txt') }}"
+    msg: "the value of pull-secret is {{ lookup('ansible.builtin.file', '~/Aro-playbooks/pull-secret.txt') }}"
+    msg: "the value of pull-secret is {{ lookup('file', '~/Aro-playbooks/pull-secret.txt') }}"
 
   - name: Create Azure Red Hat OpenShift 4 Cluster
     azure_rm_openshiftmanagedcluster:

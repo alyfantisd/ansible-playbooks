@@ -42,7 +42,7 @@
 ########################################################## You may change any of these variables.
 
 
-      AZURE_SUBSCRIPTION_ID: "30a2d13a-513f-4c9f-aced-08972ae8d030"
+      AZURE_SUBSCRIPTION_ID: "0f583d45-a241-496e-87f3-ba1e66a16b9e"
       sp_client_id: "96430035-c0c3-4deb-862b-4ffc309e7a04"
       sp_secret: "Nku8Q~k29VD5QnWMlFbNK6qDfxJUMRzBbjTdKcPB"
       aro_master_subnet: "AROMasterSubnet"

@@ -41,6 +41,7 @@
 
 ########################################################## You may change any of these variables.
 
+
       aro_master_subnet: "AROMasterSubnet"
       aro_master_subnet_cidr: "100.100.10.0/24"
       aro_vnet: "AROVNet"
@@ -107,12 +108,14 @@
           visibility: "{{ privacy_ingress }}"
       master_profile:
         vm_size : "{{ master_vm_size }}"
+        subnet_id: "/subscriptions/{{ lookup('env', 'AZURE_SUBSCRIPTION_ID') }}/resourceGroups/{{resource_group}}/providers/Microsoft.Network/virtualNetworks/{{ aro_vnet }}/subnets/{{ aro_master_subnet }}"
       network_profile:
         pod_cidr: "{{ network_pod_cidr }}"
         service_cidr: "{{ network_service_cidr }}"
       worker_profiles:
         - name: "worker"
           vm_size : "{{ worker_vm_size }}"
+          subnet_id: "/subscriptions/{{ lookup('env', 'AZURE_SUBSCRIPTION_ID') }}/resourceGroups/{{resource_group}}/providers/Microsoft.Network/virtualNetworks/{{ aro_vnet }}/subnets/{{ aro_worker_subnet }}"
 #          count: "{{ worker_node_count }}"
           count: 3
 

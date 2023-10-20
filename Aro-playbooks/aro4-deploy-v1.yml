@@ -56,7 +56,7 @@
       customdns: "arolabprd.lab.kubesupport.com"
       version: "4.12.25"
       master_vm_size: "Standard_D8s_v3"
-      network_pod_cidr: "10.128.0.0/14"
+      network_pod_cidr: "10.128.0.0/16"
       network_service_cidr: "10.129.0.0/16"
       privacy_api: "Public"
       privacy_ingress: "Public"

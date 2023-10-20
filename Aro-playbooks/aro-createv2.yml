@@ -25,8 +25,8 @@
 - hosts: localhost
   connection: local
   vars:
-    LOCATION: westeu
-    RESOURCEGROUP: aro
+    LOCATION: westeurope
+    RESOURCEGROUP: aroprod1
     CLUSTER: alpha-cluster
     DOMAIN: kubesupport.com
     MASTER_SIZE : Standard_D4s_v3

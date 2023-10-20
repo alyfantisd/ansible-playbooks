@@ -95,8 +95,6 @@
       service_endpoints:
         - service: Microsoft.ContainerRegistry
 
-  - ansible.builtin.debug:
-    msg: "the value of pull-secret is {{ lookup('ansible.builtin.file', '~/Aro-playbooks/pull-secret.txt') }}"
 
   - name: Create Azure Red Hat OpenShift 4 Cluster
     azure_rm_openshiftmanagedcluster:

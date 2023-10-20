@@ -36,7 +36,7 @@
 
   collections:
     - azure.azcollection
-  
+
   vars:
 
 ########################################################## You may change any of these variables.
@@ -109,8 +109,8 @@
         - name: "default"
           visibility: "{{ privacy_ingress }}"
       service_principal_profile:
-        client_id: "{{ sp_client_id }}"
-        client_secret: "{{ sp_secret }}"
+        client_id: "96430035-c0c3-4deb-862b-4ffc309e7a04"
+        client_secret: "6a9c7b1e-e91d-48ad-9ec4-f16395d56b3d"
       master_profile:
         vm_size : "{{ master_vm_size }}"
         subnet_id: "/subscriptions/{{ lookup('env', 'AZURE_SUBSCRIPTION_ID') }}/resourceGroups/{{resource_group}}/providers/Microsoft.Network/virtualNetworks/{{ aro_vnet }}/subnets/{{ aro_master_subnet }}"
